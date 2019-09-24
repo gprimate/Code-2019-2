@@ -12,4 +12,4 @@ gui4 = Pessoa "Gui" 28 "20"
 banana = [gui,gui2,gui3,gui4]
 
 somaIdade :: Pessoa -> Int
-somaIdade = foldr (+) 0 []
+somaIdade = foldr ((+) . idade) 0 
