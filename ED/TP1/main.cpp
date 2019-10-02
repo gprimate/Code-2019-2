@@ -1,27 +1,60 @@
 #include <iostream>
-#include "lista.h"
+#include <cstdio>
+#include "findOp.h"
 
 int main() {
-    
-    LinkedList GG;
+    int q;
+    char e;
+    LinkedList sizes;
+   
 
-    GG.insertElement(0);
-    GG.insertElement(1);
-    GG.insertElement(2);
-    GG.insertElement(3);
-    GG.insertElement(4);
-    GG.insertElement(5);
-    GG.insertElement(6);
-    GG.removeFirst();
-    GG.removeFirst();
-    GG.removeFirst();
+    while(scanf("%d %c", &q, &e) != EOF) {
+        if (e == 'i') {
+            sizes.insertElement(q);
 
-    int size = GG.size();
+        } else if (e == 'p') {
+            printf("%d\n", numOp(q,sizes));
 
-    for (int i = 0; i < size; i++){
-        std::cout<< GG.getElement(i) << std::endl;
+        }  else if (e == 'r') {
+            sizes.removeElement(q);
+        }       
     }
 
-    GG.~LinkedList();
+    
+    
+    // for (int i=0; i < sizes.size(); i++) {
+    //     newSizes.insertElement(sizes.getElement(i));
+    // }
+
+    // sizeB = newSizes.size();
+    // addItems(sizes, newSizes);
+
+    // std::cout << "----------" << std::endl;
+    // std::cout << sizeB << std::endl;
+    // std::cout << "----------" << std::endl;
+    
+
+    // for (int i = 0; i < sizeB; i++){
+    //         newSizes.removeFirst();
+    // }
+    // for (int i = 0; i < newSizes.size(); i++) {
+    //     std::cout << newSizes.getElement(i) << std::endl;
+    // }
+
+    // sizeB = newSizes.size();
+    // addItems(sizes, newSizes);
+
+    // std::cout << "----------" << std::endl;
+    // std::cout << sizeB << std::endl;
+    // std::cout << "----------" << std::endl;
+
+    // for (int i = 0; i < sizeB; i++){
+    //         newSizes.removeFirst();
+    // }
+
+    // for (int i = 0; i < newSizes.size(); i++) {
+    //     std::cout << newSizes.getElement(i) << std::endl;
+    // }
+    
     return 0;
 }

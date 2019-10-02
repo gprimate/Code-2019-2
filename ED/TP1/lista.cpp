@@ -39,6 +39,39 @@ void LinkedList::insertElement(int element) {
 }
 
 
+void LinkedList::removeElement(int element) {
+    Node *current = _start;
+    int pos;
+
+    for (int i = 0; i < _numElements; i++) {
+        if (current->_element == element) {
+            pos = i;
+            break;
+            
+        } else {
+            current = current->_next;
+        }
+    }
+
+    if (pos == 0) {
+        _start = current->_next;
+    }
+
+    if (pos == _numElements - 1) {
+        Node * before = _start;
+
+        for (int i = 0; i < pos - 1; i++) {
+            before = before->_next;
+        }
+
+        before->_next = nullptr;
+        _end = before;
+    }
+
+    _numElements -= 1;
+    delete current; 
+}
+
 void LinkedList::removeFirst(){
     if (_numElements == 0) {
         return;
