@@ -55,18 +55,25 @@ void LinkedList::removeElement(int element) {
 
     if (pos == 0) {
         _start = current->_next;
-    }
-
-    if (pos == _numElements - 1) {
+        
+    } else {
         Node * before = _start;
 
         for (int i = 0; i < pos - 1; i++) {
             before = before->_next;
         }
 
-        before->_next = nullptr;
-        _end = before;
+        if (pos == _numElements - 1) {
+            
+            before->_next = nullptr;
+            _end = before;
+
+        } else {
+            before->_next = current->_next;
+        }
     }
+
+    
 
     _numElements -= 1;
     delete current; 

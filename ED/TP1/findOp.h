@@ -8,3 +8,5 @@ bool checkWin(int ml, LinkedList & newSizes);
 void addItems(LinkedList & sizes, LinkedList & newSizes);
 
 void removeItem(int item);
+
+bool isDifferent(int element, LinkedList & newSizes);

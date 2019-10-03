@@ -25,11 +25,8 @@ int numOp(int ml, LinkedList & sizes) {
             op += 1;
 
             for (int i = 0; i < sizeB; i++){
-                newSizes.removeFirst();
-
-                
-            }
-            
+                newSizes.removeFirst();                
+            }        
         }
     }
 }
@@ -56,13 +53,26 @@ void addItems(LinkedList & sizes, LinkedList & newSizes) {
     for(int i = 0; i < sizes.size(); i++) {
 
         for (int j= 0; j < nSize; j++) {
-            newSizes.insertElement(newSizes.getElement(j) + sizes.getElement(i));            
+            int add = newSizes.getElement(j) + sizes.getElement(i);
             int sub = newSizes.getElement(j) - sizes.getElement(i);
 
-            if (sub > 0){
+            if (isDifferent(add, newSizes)) {
+                newSizes.insertElement(add);  
+            }
+                      
+            if (sub > 0 && sub && isDifferent(sub, newSizes)){
                 newSizes.insertElement(sub);
             } 
         }
     } 
 }
 
+
+bool isDifferent(int element, LinkedList & newSizes) {
+    for (int i = 0; i < newSizes.size(); i++) {
+        if (element == newSizes.getElement(i)) {
+            return false;
+        } 
+    }
+    return true;
+}
