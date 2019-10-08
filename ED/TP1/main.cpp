@@ -6,7 +6,9 @@ int main() {
     int q;
     char e;
     LinkedList sizes;
-   
+
+   //Base do programa, que chama funcoes e metodos dos arquivos lista.cpp e findOp.cpp
+   //Loop que termina quando o usuario digita ctrl d
     while(scanf("%d %c", &q, &e) != EOF) {
         if (e == 'i') {
             sizes.insertElement(q);

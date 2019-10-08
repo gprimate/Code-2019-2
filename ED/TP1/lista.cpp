@@ -1,14 +1,14 @@
 #include "lista.h"
 #include <iostream>
 
-
+//Construtor da lista
 LinkedList::LinkedList() {
     _start = nullptr;
     _end = nullptr;
     _numElements = 0;
 }
 
-
+//Desconstrutor da lista, tendo em vista que ela usa ponteiros
 LinkedList::~LinkedList() {
     Node *current = _start;
     Node *aux = nullptr;
@@ -20,7 +20,7 @@ LinkedList::~LinkedList() {
     }
 }
 
-
+//Funcao que insere um novo elemento no final da lista
 void LinkedList::insertElement(int element) {
     Node *newElement = new Node();
 
@@ -38,11 +38,13 @@ void LinkedList::insertElement(int element) {
     _numElements += 1;
 }
 
-
+//Funcao que remove um elemento
+//Recebe como parametro o valor do elemento e nao o indice dele
 void LinkedList::removeElement(int element) {
     Node *current = _start;
     int pos;
 
+    //Loop para achar o indice do elemento
     for (int i = 0; i < _numElements; i++) {
         if (current->_element == element) {
             pos = i;
@@ -52,7 +54,7 @@ void LinkedList::removeElement(int element) {
             current = current->_next;
         }
     }
-
+    // Faz a remocao de maneira e a religacao dos ponteiros
     if (pos == 0) {
         _start = current->_next;
         
@@ -73,12 +75,12 @@ void LinkedList::removeElement(int element) {
         }
     }
 
-    
-
     _numElements -= 1;
     delete current; 
 }
 
+
+//Funcao que remove o primeiro elemento da lista
 void LinkedList::removeFirst(){
     if (_numElements == 0) {
         return;
@@ -92,6 +94,8 @@ void LinkedList::removeFirst(){
 }
 
 
+//Funcao que retorna o elemento desejado
+//Recebe como parametro o indice do elemento 
 int LinkedList::getElement(int pos) {
     if (pos >= _numElements) {
         exit(1);
@@ -114,6 +118,7 @@ int LinkedList::getElement(int pos) {
 }
 
 
+//Funcao que retorna o tamanho da lista
 int LinkedList::size(){
     return _numElements;
 }
