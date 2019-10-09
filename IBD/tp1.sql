@@ -108,9 +108,9 @@ FROM person p
 WHERE p.person_name='Lucas, George'
 
 -------------------------------------------------------------------------------
-SELECT total.movie_name
+SELECT m.movie_name
 
-FROM (
+FROM m.movie (
     (SELECT *
     FROM movie m NATURAL JOIN role r NATURAL JOIN role_type rt
     WHERE rt.type_name='director') 
@@ -120,8 +120,72 @@ FROM (
     (SELECT *
     FROM person p 
     WHERE p.person_name='Lucas, George') 
-) total
+) 
+
+SELECT movie_name
+
+FROM movie 
+
+WHERE movie_name in 
+    ((SELECT m.movie_name
+    FROM movie m NATURAL JOIN role r NATURAL JOIN role_type rt
+    WHERE rt.type_name='director') 
+
+    NATURAL JOIN
+
+    (SELECT role_type_id
+    FROM person p 
+    WHERE p.person_name='Lucas, George'))
+ 
+SELECT p.person_name
+FROM person p NATURAL JOIN role r NATURAL JOIN movie m
+WHERE m.movie_name='Alien' AND p.gender='f'
 
 
 
+-------------------------
+-------------------------
+-- Parte 2
 
+--3)
+
+SELECT p.person_name, COUNT(r.person_id)
+FROM person p NATURAL JOIN role r  NATURAL JOIN role_type rt
+WHERE rt.type_name='actor'
+GROUP BY p.person_name
+ORDER BY COUNT(r.person_id) DESC
+LIMIT 1
+
+
+--4)
+
+SELECT m.movie_name, p.person_name
+FROM person p NATURAL JOIN role r NATURAL JOIN movie m NATURAL JOIN role_type rt
+WHERE rt.type_name='director' AND p.gender='f'
+
+
+--5)--pm.person_name, pf.person_name WHERE rtm.type_name='actor' AND rtf.type_name='actress'
+SELECT pm.person_name, pf.person_name, COUNT(rm.person_id)
+FROM (person pm NATURAL JOIN role rm NATURAL JOIN role_type rtm), (person pf NATURAL JOIN role rf NATURAL JOIN role_type rtf)
+WHERE rtm.type_name='actor' AND rtf.type_name='actress' AND rm.movie_id = rf.movie_id
+GROUP BY pm.person_name, pf.person_name
+ORDER BY COUNT(rm.person_id) DESC
+LIMIT 1
+
+
+--6)
+
+SELECT *
+FROM  role r NATURAL JOIN movie m NATURAL JOIN role_type rt
+WHERE m.movie_name='Persona'
+
+
+--7)
+
+SELECT p.person_name, COUNT(m.movie_id), AVG(m.rating)
+FROM person p NATURAL JOIN role r NATURAL JOIN movie m NATURAL JOIN role_type rt
+WHERE rt.type_name='director'
+GROUP BY p.person_name
+HAVING COUNT(m.movie_id) > 2
+ORDER BY AVG(m.rating) DESC
+LIMIT 7
