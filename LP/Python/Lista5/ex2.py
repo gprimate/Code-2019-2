@@ -5,7 +5,7 @@ class Data:
         if type(day) is not int or type(month) is not int or type(year) is not int:
             raise Exception('Invalid Date')
 
-        if day >= 1 and day <= 31 and month >= 1 and month <= 12 and year != 0 and not error:
+        if day >= 1 and day <= 31 and month >= 1 and month <= 12 and year != 0:
             
             if month==2:
                 bool29 = 0
