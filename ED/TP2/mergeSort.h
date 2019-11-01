@@ -1,4 +1,4 @@
-#include "planet.h"
+#include "months.h"
 
 void merge(Planet planets[], int left, int middle, int right);
 
