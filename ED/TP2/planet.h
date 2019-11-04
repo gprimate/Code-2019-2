@@ -13,6 +13,4 @@ public:
 
     int getTime();
     std::string getName();
-
-    void setTime(int visitTime);
 };

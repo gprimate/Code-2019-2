@@ -17,7 +17,3 @@ std::string Planet::getName() {
 int Planet::getTime() {
     return this->visitTime;
 }
-
-void Planet::setTime(int visitTime){
-    this->visitTime = visitTime;
-}
