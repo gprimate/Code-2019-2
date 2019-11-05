@@ -22,7 +22,6 @@ sufixo(Y, X) :-
     append(Front, X, Y).
 
 
-
 /* Questão 4 */
 
 sublista([], _).
