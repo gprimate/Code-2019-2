@@ -7,11 +7,13 @@ void merge(Planet planets[], int left, int middle, int right) {
 
     int sizeL = middle - left + 1; 
     int sizeR =  right - middle; 
-
+    
     //Cria uma copia dos vetores da esquerda e direita
-    Planet valuesL[sizeL];
-    Planet valuesR[sizeR];
-
+    Planet * valuesL;
+    valuesL = new Planet [sizeL];
+    Planet * valuesR;
+    valuesR = new Planet [sizeR];
+    
     //Adiciona elementos no vetor da esquerda
     for (i = 0; i < sizeL; i++) {
         valuesL[i] = planets[i + left];
@@ -21,14 +23,14 @@ void merge(Planet planets[], int left, int middle, int right) {
     for (i = 0; i < sizeR; i++) {
         valuesR[i] = planets[middle + 1 + i];
     }
-
-
+    
     i = 0;
     j = 0;
     k = left;
-
+    
     /*Ordena os elementos dos vetores da esquerda e direita e 
       guarda o vetor ordenado no vetor parâmetro */
+    
     while (i < sizeL && j < sizeR) {
         if (valuesL[i].getTime() <= valuesR[j].getTime()) {
             planets[k] = valuesL[i];
@@ -54,6 +56,8 @@ void merge(Planet planets[], int left, int middle, int right) {
         j++;
         k++;
     }
+    delete[] valuesR;
+    delete[] valuesL;
 } 
 
 //Função mergeSort em si, que chama a funcão merge
